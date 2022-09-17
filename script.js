@@ -28,7 +28,6 @@ myImage1.addEventListener('load', function(){
             row.push(cell);
         }
         mappedImage1.push(row);
-        console.log(mappedImage1);
     }
 
     function calculateRelativeBrightness(red, green, blue) {
@@ -46,9 +45,15 @@ myImage1.addEventListener('load', function(){
             this.speed = 0;
             this.velocity = Math.random() * 0.5;
             this.size = Math.random() * 1.5 + 1;
+            this.position1 = Math.floor(this.y);
+            this.position2 = Math.floor(this.x);
         }
         update() {
-            this.y += this.velocity; 
+            this.position1 = Math.floor(this.y);
+            this.position2 = Math.floor(this.x);
+            this.speed = mappedImage1[this.position1][this.position2][0];
+            let movement = (2.5 - this.speed) + this.velocity;
+            this.y += movement; 
             if (this.y >= canvas1.height) {
                 this.y = 0;
                 this.x = Math.random() * canvas1.width;
