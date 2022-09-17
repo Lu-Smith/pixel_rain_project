@@ -21,7 +21,22 @@ myImage1.addEventListener('load', function(){
             const red = pixels1.data[(y * 4 * pixels1.width) + (x * 4)];
             const green = pixels1.data[(y * 4 * pixels1.width) + (x * 4 + 1)];
             const blue = pixels1.data[(y * 4 * pixels1.width) + (x * 4 + 2)];
+            const brightness = calculateRelativeBrightness(red, green, blue);
+            const cell = [
+                cellBirghtness = brightness, 
+            ];
+            row.push(cell);
         }
+        mappedImage1.push(row);
+        console.log(mappedImage1);
+    }
+
+    function calculateRelativeBrightness(red, green, blue) {
+        return Math.sqrt(
+            (red * red) * 0.299 +
+            (green * green) * 0.587 + 
+            (blue * blue) * 0.114
+        )/100;
     }
 
     class Particle1 {
