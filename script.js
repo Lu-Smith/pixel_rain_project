@@ -9,9 +9,13 @@ myImage1.addEventListener('load', function(){
     canvas1.height = 600;
     
     ctx1.drawImage(myImage1, 0, 0, canvas1.width, canvas1.height);
+    const pixels1 = ctx1.getImageData(0, 0, canvas1.width, canvas1.height);
+    console.log(pixels1);
 
     let particleArray1 = [];
     const numeberOfParticles1 = 5000;
+
+    let mappedImage1 = [];
 
     class Particle1 {
         constructor() {
@@ -42,6 +46,7 @@ myImage1.addEventListener('load', function(){
     }
     init1();
     function animate1() {
+        ctx1.drawImage(myImage1, 0, 0, canvas1.width, canvas1.height);
         ctx1.globalAlpha = 0.05;
         ctx1.fillStyle = 'rgba(0, 0, 0)';
         ctx1.fillRect(0, 0, canvas1.width, canvas1.height);
