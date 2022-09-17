@@ -10,12 +10,19 @@ myImage1.addEventListener('load', function(){
     
     ctx1.drawImage(myImage1, 0, 0, canvas1.width, canvas1.height);
     const pixels1 = ctx1.getImageData(0, 0, canvas1.width, canvas1.height);
-    console.log(pixels1);
 
     let particleArray1 = [];
     const numeberOfParticles1 = 5000;
 
     let mappedImage1 = [];
+    for ( let y = 0; y < canvas1.height; y++) {
+        let row = [];
+        for (let x = 0 ; x < canvas1.width; x++) {
+            const red = pixels1.data[(y * 4 * pixels1.width) + (x * 4)];
+            const green = pixels1.data[(y * 4 * pixels1.width) + (x * 4 + 1)];
+            const blue = pixels1.data[(y * 4 * pixels1.width) + (x * 4 + 2)];
+        }
+    }
 
     class Particle1 {
         constructor() {
