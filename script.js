@@ -10,6 +10,7 @@ myImage1.addEventListener('load', function(){
     
     ctx1.drawImage(myImage1, 0, 0, canvas1.width, canvas1.height);
     const pixels1 = ctx1.getImageData(0, 0, canvas1.width, canvas1.height);
+    ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
 
     let particleArray1 = [];
     const numeberOfParticles1 = 5000;
@@ -60,8 +61,15 @@ myImage1.addEventListener('load', function(){
             }
         }
         draw(){
+            this.speed = mappedImage1[this.position1][this.position2][0];
             ctx1.beginPath();
-            ctx1.fillStyle = 'white';
+            if(this.speed < 0.2) {
+                ctx1.fillStyle = 'black';
+            } else if (this.speed > 1.1) {
+                ctx1.fillStyle = 'white';
+            } else {
+                ctx1.fillStyle = '#ff9a3c';
+            }
             ctx1.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx1.fill();
         }
@@ -73,12 +81,13 @@ myImage1.addEventListener('load', function(){
     }
     init1();
     function animate1() {
-        ctx1.drawImage(myImage1, 0, 0, canvas1.width, canvas1.height);
-        ctx1.globalAlpha = 0.05;
+        ctx1.globalAlpha = 0.09;
         ctx1.fillStyle = 'rgba(0, 0, 0)';
         ctx1.fillRect(0, 0, canvas1.width, canvas1.height);
+        ctx1.globalAlpha = 0.3;
         for (let i = 0; i < particleArray1.length; i++) {
             particleArray1[i].update();
+            ctx1.globalAlpha = particleArray1[i].speed * 0.3;
             particleArray1[i].draw();
         }
         requestAnimationFrame(animate1);
